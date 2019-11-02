@@ -1,0 +1,31 @@
+﻿@model IEnumerable<WebTesting.Models.Question>
+
+
+
+
+<div>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>Question text</th>
+            <th>Answer1</th>
+            <th>Answer2</th>
+            <th>Answer3</th>
+            <th>CorrectAnswer</th>
+            <th></th>
+            <th></th>
+        </tr>
+         @foreach(var q in Model)
+         {
+             <tr>
+                 <td>@q.QuestionText</td>
+                 <td>@q.Answer1</td>
+                 <td>@q.Answer2</td>
+                 <td>@q.Answer3</td>
+                 <td>@q.CorrectAnswer</td>
+                 <td><a href="@($"/Administration/EditQuestion?id={q.QuestionId}")">Edit</a></td>
+                 <td><a href="@($"/Administration/DeleteQuestion?id={q.QuestionId}")">Delete</a></td>
+             </tr>
+         }
+
+    </table>
+</div>

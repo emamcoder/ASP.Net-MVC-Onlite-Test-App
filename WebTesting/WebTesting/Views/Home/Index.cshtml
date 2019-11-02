@@ -1,0 +1,29 @@
+﻿@model IEnumerable<WebTesting.Models.Test>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+ <h2>ASP.Net MVC Online Test App</h2>
+</div>
+
+<div class="row">
+    <div class="col-md-6"> 
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Test Name</th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+            @foreach (var t1 in Model)
+            {
+                <tr>
+                    <td>@t1.TestName</td>
+                    <td>@t1.TestDescription</td>
+                    <td><a href="@($"/Home/BeginTest?testId={t1.TestId}")" class="btn btn-success">Begin test</a></td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

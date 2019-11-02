@@ -1,0 +1,80 @@
+﻿@model IEnumerable<WebTesting.Models.Test>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="row">
+    <div class="col-md-4">
+        <h3>Tests</h3>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>Test name</th>
+            <th>Description</th>
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach(var test in Model)
+        {
+            <tr>
+                <td>@test.TestName</td>
+                <td>@test.TestDescription</td>
+                <td><a href="@($"/Administration/Edit?testId={test.TestId}")">Edit</a></td>
+                <td><a href="@($"/Administration/Delete?testId={test.TestId}")">Delete</a></td>
+            </tr>
+        }
+    </table>
+        <a href="/Administration/Create" class="btn btn-primary">Add new test</a>&nbsp;
+        <a href="/Administration/AddQuestion" class="btn btn-primary">Add Questions</a>
+        </div>
+    <form class="form-horizontal">
+        
+            <label for="Select1" class="control-label col-md-2">Questions for</label>
+          <div class="col-md-5 form-group">
+            <select id="Select1" class="form-control">
+                <option value="0">all tests</option>
+                @foreach (var t in Model)
+                {
+                    <option value="@t.TestId">@t.TestName</option>
+                }
+            </select>
+        </div>
+    </form>
+    <br />
+    <div id="questions" class="col-md-8">
+      
+       
+    </div>
+ 
+</div><br />
+
+
+@section Scripts{
+    
+       <script>
+           function ReadQuestions(id) {
+               var ajax = $.ajax({
+                   type: "GET",
+                   url: "/Administration/_ReturnQuestions?id=" + id,
+                   data: "html",
+                   success: function (data) {
+                       $("#questions").html(data);
+                   },
+                   error: function (err) {
+                       $("#questions").html(err.statusText);
+                   }
+               });
+           }
+           $("#Select1").change(function () {
+
+               ReadQuestions($("#Select1").val());
+              
+           });
+
+           $(document).ready(function () {
+               ReadQuestions(0);
+           });
+       </script>
+
+}

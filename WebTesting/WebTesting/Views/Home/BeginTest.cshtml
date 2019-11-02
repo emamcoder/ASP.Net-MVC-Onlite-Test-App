@@ -1,0 +1,33 @@
+﻿@model WebTesting.Models.Test
+@{
+    ViewBag.Title = "BeginTest";
+}
+
+@if(Request.IsAuthenticated)
+{
+    <h3>logged in as @User.Identity.Name</h3>
+   
+}
+else
+{
+    <p>Anonymous user</p>
+}
+<h2>@Model.TestName</h2>
+
+ <div class="row">
+     <p class="text-danger">
+         Press <strong><mark>start</mark></strong> button to begin test.<br />
+         Each question contains three offered answers.<br />
+         You can only answer one question.<br />
+         By clicking on the <strong><mark>next</mark></strong> button you move on to next question.<br />
+         Once you move on to next question you won't be able to go to previous.<br /><br />
+         Wish you luck :D        
+     </p>
+
+
+     <form action="/Home/StartTest" method="post">
+         <input type="hidden" name="testId" value="@Model.TestId"/>
+         <button id="btnStartTest" type="submit" class="btn btn-success"><span class="glyphicon glyphicon-certificate"></span>Start test</button>
+     </form>
+ </div>
+

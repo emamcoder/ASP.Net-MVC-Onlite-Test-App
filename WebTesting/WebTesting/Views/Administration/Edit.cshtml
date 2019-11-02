@@ -1,0 +1,33 @@
+﻿@model WebTesting.Models.Test
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<div class="row">
+    <form action="/Administration/Edit" method="post" class="form-horizontal" role="form">
+        @Html.AntiForgeryToken()
+
+        <input type="hidden" name="TestId" value="@Model.TestId"/>
+        <label for="textName" class="control-label col-md-2">Test name</label>
+        <div class="col-md-10 form-group">
+            <input id="textName" type="text" name="TestName" class="form-control" data-val="true" data-val-required="Test name required" value="@Model.TestName"/>
+        </div>
+        <label for="textDescription" class="control-label col-md-2">Description</label>
+        <div class="col-md-10 form-group">
+            <textarea id="textDescription" rows="4" cols="20" name="TestDescription" class="form-control">@Model.TestDescription</textarea>
+        </div>
+        <div class="form-group">
+            <div class="col-md-8 col-lg-offset-4">
+                <button id="btnSend" type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

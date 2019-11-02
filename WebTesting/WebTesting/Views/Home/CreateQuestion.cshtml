@@ -1,0 +1,45 @@
+﻿@model WebTesting.Models.Question
+
+@{
+    ViewBag.Title = "CreateQuestion";
+
+  
+}
+
+
+ <h3>Question @ViewBag.QuestionNumber: </h3>
+
+
+    <div class="row">
+        <hr />
+        @Model.QuestionText
+        <br />
+        <form action="/Home/CreateQuestion" method="post">
+            <input type="hidden" name="testId" value="@Model.TestId" />
+            <input type="hidden" name="questionNumber" value="@ViewBag.QuestionNumber" />
+            <div class="radio">
+                <label>
+                    <input id="Radio1" type="radio" name="answer" value="1" />@Model.Answer1
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input id="Radio2" type="radio" name="answer" value="2" />@Model.Answer2
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input id="Radio3" type="radio" name="answer" value="3" />@Model.Answer3
+                </label>
+            </div>
+            <button id="btnNext" type="submit" class="btn btn-danger">Next<span class="glyphicon glyphicon-step-forward"></span></button>
+        </form>
+
+
+
+
+
+    </div>
+
+
+

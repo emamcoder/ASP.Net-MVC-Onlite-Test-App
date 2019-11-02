@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<div class="row">
+    <form action="/Administration/Create" method="post" class="form-horizontal" role="form">
+        @Html.AntiForgeryToken()
+        <label for="textName" class="control-label col-md-2" >Test name</label>
+       
+        <div class="col-md-10 form-group">
+            <input id="textName" type="text" name="TestName" class="form-control" data-val="true" data-val-required="Test name required"/>
+        </div>
+        <label for="textDescription" class="control-label col-md-2">Description</label>
+        <div class="col-md-10 form-group">
+            <textarea id="textDescription" rows="4" cols="20" name="TestDescription" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <div class="col-md-8 col-lg-offset-4">
+                <button id="btnSend" type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
+    }

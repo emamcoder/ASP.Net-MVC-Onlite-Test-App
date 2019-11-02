@@ -1,0 +1,36 @@
+﻿@model WebTesting.Models.Test
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Test</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Model.TestName
+        </dt>
+
+        <dt>
+           @Model.TestDescription
+        </dt>      
+
+    </dl>
+
+     <br /><br />
+
+    <div class="row">
+        <form action="/Administration/Delete" method="post">
+            <input type="hidden" name="TestId" value="@Model.TestId"/>
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="TestName" value="@Model.TestName" />
+            <input type="hidden" name="TestDescription" value="@Model.TestDescription" />
+             <a href="/Administration/Index">Back to list</a>
+            <button id="btnDelete" type="submit" class="btn btn-primary">Delete</button>
+        </form>
+    </div>
+</div>

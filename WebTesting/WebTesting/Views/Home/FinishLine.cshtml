@@ -1,0 +1,42 @@
+﻿@using System;
+@model IEnumerable<WebTesting.Models.Testing>
+@{
+    ViewBag.Title = "FinishLine";
+}
+
+<h2>Test result's</h2>
+
+<div class="row">
+    <table class="table table-bordered table-striped">
+        <tr>
+          <th>Question number</th>
+           <th>Question text</th>
+            <th>Correct answer</th>
+            <th>User answer</th>
+        </tr>
+
+        @foreach(var a in Model)
+        {
+            <tr>
+                <td>@a.Question.QuestionNumber</td>
+                <td>@a.Question.QuestionText</td>
+                <td>@a.Question.CorrectAnswer</td>
+                <td>@a.UserAnswer &nbsp; &nbsp;
+                
+                @if(a.AnswerCorrectly)
+                {
+                    <span class="glyphicon glyphicon-ok" style="font-size:20px"></span>
+                }
+                else
+                {
+                    <span class="glyphicon glyphicon-remove" style="font-size:20px"></span>
+                }
+               </td>
+            </tr>
+        }
+    </table>
+</div><br />
+<div class="row">
+    <h3>Won points: @Math.Round(ViewBag.Points,3)</h3>
+    <a href="/Home/Index">Back to home page</a>
+</div>
